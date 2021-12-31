@@ -207,6 +207,12 @@ else:  # Python 2
         def enter_context(self, x):
             self.contexts.append(x)
 
+        def pop_all(self):
+            result = ExitStack()
+            contexts, self.contexts = self.contexts, []
+            result.contexts = contexts
+            return result
+
     def items(x):
         return x.iteritems()
 
